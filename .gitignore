@@ -17,3 +17,7 @@ yarn-error.log
 /.fleet
 /.idea
 /.vscode
+
+# JWT
+storage/certs/
+http_ca.crt
