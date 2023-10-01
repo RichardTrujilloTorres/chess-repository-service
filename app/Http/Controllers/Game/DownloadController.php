@@ -17,15 +17,21 @@ class DownloadController extends Controller
          */
         $game = Game::find($id);
         if (empty($game)) {
-            return response()->json([
-                'message' => 'Game not found.',
-                'status' => 'error',
-                'data' => [],
-            ], Response::HTTP_NOT_FOUND);
+            return response()->json(
+                [
+                    'message' => 'Game not found.',
+                    'status' => 'error',
+                    'data' => [],
+                ],
+                Response::HTTP_NOT_FOUND
+            );
         }
 
-        return response()->streamDownload(function () use ($game) {
-            echo $game->moves;
-        }, 'game-'.Str::uuid(6).'.'.Game::DEFAULT_FILE_EXTENSION);
+        return response()->streamDownload(
+            function () use ($game) {
+                echo $game->moves;
+            },
+            'game-'.Str::uuid(6).'.'.Game::DEFAULT_FILE_EXTENSION
+        );
     }
 }

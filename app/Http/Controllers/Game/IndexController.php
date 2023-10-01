@@ -11,9 +11,12 @@ class IndexController extends Controller
 {
     public function __invoke(Request $request)
     {
-        $this->validate($request, [
-            'user_id' => 'required|exists:users,id',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'user_id' => 'required|exists:users,id',
+            ]
+        );
 
         /**
          * @var LengthAwarePaginator $games
@@ -23,10 +26,12 @@ class IndexController extends Controller
             ->orderBy('id', 'DESC')
             ->paginate();
 
-        return response()->json([
-            'message' => '',
-            'status' => 'success',
-            'data' => compact('games'),
-        ]);
+        return response()->json(
+            [
+                'message' => '',
+                'status' => 'success',
+                'data' => compact('games'),
+            ]
+        );
     }
 }

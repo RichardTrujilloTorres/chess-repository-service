@@ -16,19 +16,25 @@ class DeleteController extends Controller
          */
         $game = Game::find($id);
         if (empty($game)) {
-            return response()->json([
-                'message' => 'Game not found.',
-                'status' => 'error',
-                'data' => [],
-            ], Response::HTTP_NOT_FOUND);
+            return response()->json(
+                [
+                    'message' => 'Game not found.',
+                    'status' => 'error',
+                    'data' => [],
+                ],
+                Response::HTTP_NOT_FOUND
+            );
         }
 
         $game->delete();
 
-        return response()->json([
-            'message' => '',
-            'status' => 'success',
-            'data' => [],
-        ], Response::HTTP_CREATED);
+        return response()->json(
+            [
+                'message' => '',
+                'status' => 'success',
+                'data' => [],
+            ],
+            Response::HTTP_CREATED
+        );
     }
 }

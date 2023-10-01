@@ -10,9 +10,12 @@ class UserUpdateController extends Controller
 {
     public function __invoke(Request $request): \Illuminate\Http\JsonResponse
     {
-        $this->validate($request, [
-            'name' => 'required|string|min:5|max:255',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'name' => 'required|string|min:5|max:255',
+            ]
+        );
 
         /**
          * @var User $user
@@ -20,10 +23,12 @@ class UserUpdateController extends Controller
         $user = auth()->user();
         $user->fill($request->only(['name']))->save();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => '',
-            'data' => compact('user'),
-        ]);
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => '',
+                'data' => compact('user'),
+            ]
+        );
     }
 }

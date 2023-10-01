@@ -24,7 +24,6 @@ Route::get('/', function () {
     ]);
 });
 
-
 Route::group([
     'prefix' => 'auth',
 ], function () {

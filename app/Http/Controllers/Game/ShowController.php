@@ -18,17 +18,22 @@ class ShowController extends Controller
          */
         $game = Game::with(['user', 'analysis'])->find($id);
         if (empty($game)) {
-            return response()->json([
-                'message' => 'Game not found.',
-                'status' => 'error',
-                'data' => [],
-            ], Response::HTTP_NOT_FOUND);
+            return response()->json(
+                [
+                    'message' => 'Game not found.',
+                    'status' => 'error',
+                    'data' => [],
+                ],
+                Response::HTTP_NOT_FOUND
+            );
         }
 
-        return response()->json([
-            'message' => '',
-            'status' => 'success',
-            'data' => compact('game'),
-        ]);
+        return response()->json(
+            [
+                'message' => '',
+                'status' => 'success',
+                'data' => compact('game'),
+            ]
+        );
     }
 }

@@ -14,10 +14,12 @@ class UserController extends Controller
          */
         $user = auth()->user();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => '',
-            'data' => compact('user'),
-        ]);
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => '',
+                'data' => compact('user'),
+            ]
+        );
     }
 }

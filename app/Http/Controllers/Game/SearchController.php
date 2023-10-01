@@ -11,19 +11,24 @@ class SearchController extends Controller
 {
     public function __invoke(Request $request): JsonResponse
     {
-        $this->validate($request, [
-            'query' => 'sometimes|string',
-        ]);
+        $this->validate(
+            $request,
+            [
+                'query' => 'sometimes|string',
+            ]
+        );
 
         $games = Game::search($request->input('query'))
             ->where('user_id', auth()->user()->id)
             ->get()
             ->values();
 
-        return response()->json([
-            'message' => '',
-            'status' => 'success',
-            'data' => compact('games'),
-        ]);
+        return response()->json(
+            [
+                'message' => '',
+                'status' => 'success',
+                'data' => compact('games'),
+            ]
+        );
     }
 }

@@ -15,19 +15,24 @@ class LogoutController extends Controller
             auth()->invalidate(true);
             // @codeCoverageIgnoreStart
         } catch (JWTException $exception) {
-            return response()->json([
-                'status' => 'error',
-                'message' => 'Could not log user out.',
-                'exceptionMessage' => $exception->getMessage(),
-            ], Response::HTTP_BAD_REQUEST);
+            return response()->json(
+                [
+                    'status' => 'error',
+                    'message' => 'Could not log user out.',
+                    'exceptionMessage' => $exception->getMessage(),
+                ],
+                Response::HTTP_BAD_REQUEST
+            );
         }
         // @codeCoverageIgnoreEnd
 
         auth()->logout();
 
-        return response()->json([
-            'status' => 'success',
-            'message' => 'User logged out.',
-        ]);
+        return response()->json(
+            [
+                'status' => 'success',
+                'message' => 'User logged out.',
+            ]
+        );
     }
 }
