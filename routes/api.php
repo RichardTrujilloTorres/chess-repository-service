@@ -31,6 +31,7 @@ Route::group([
     Route::post('register', [\App\Http\Controllers\User\RegisterController::class, '__invoke']);
 
     Route::group(['middleware' => ['auth']], function () {
+        Route::get('user', [\App\Http\Controllers\User\UserController::class, '__invoke']);
         Route::get('refresh', [\App\Http\Controllers\User\TokenRefreshController::class, '__invoke']);
         Route::post('logout', [\App\Http\Controllers\User\LogoutController::class, '__invoke']);
     });
@@ -40,7 +41,6 @@ Route::group([
     'middleware' => ['auth'],
     'prefix' => 'users',
 ], function () {
-    Route::get('', [\App\Http\Controllers\User\UserController::class, '__invoke']);
     Route::put('', [\App\Http\Controllers\User\UserUpdateController::class, '__invoke']);
 });
 
